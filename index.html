@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<title>People in Space</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+	background-color: black;
+	color: white;
+}
+h1 {
+	font: 50vh Helvetica, sans-serif;
+	margin: 0px;
+}
+.center {
+	font: 20px Helvetica, sans-serif;
+	margin: 0px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+</style>
+<body>
+
+	<div class="center">
+		<center>
+		<h1 id="number"></h1>
+		<p>People in space</p>
+		</center>
+	</div>
+
+	<script type="text/javascript">
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+		  if (this.readyState == 4 && this.status == 200) {
+			var myArr = JSON.parse(this.responseText);
+			document.getElementById("number").innerHTML = myArr['number'];
+		  }
+		};
+		xmlhttp.open("GET", "http://api.open-notify.org/astros.json", true);
+		xmlhttp.send();
+		// Alternate url https://www.howmanypeopleareinspacerightnow.com/peopleinspace.json
+	</script>
+	
+</body>
+</html>
